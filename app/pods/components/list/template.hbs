@@ -1,0 +1,6 @@
+<ul class='list-group'>
+  {{! template-lint-disable no-unused-block-params }}
+  {{#each @items as |item|}}
+    <List::Item @item={{item}} />
+  {{/each}}
+</ul>
