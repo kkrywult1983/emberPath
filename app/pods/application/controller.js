@@ -1,7 +1,9 @@
 import Controller from '@ember/controller';
+import { action } from '@ember/object';
+import { tracked } from '@glimmer/tracking';
 
 export default class ApplicationController extends Controller {
-  items = [
+  @tracked items = [
     {
       isDone: true,
       label: 'Zjeść śniadanie',
@@ -19,4 +21,20 @@ export default class ApplicationController extends Controller {
       label: 'Powtórzyć CSS',
     },
   ];
+  @action
+  onInputValue(event) {
+    this.newTaskValue = event.target.value;
+  }
+
+  @action
+  addNewTask(event) {
+    event.preventDefault();
+    this.items = [
+      ...this.items,
+      {
+        isDone: false,
+        label: this.newTaskValue,
+      },
+    ];
+  }
 }
